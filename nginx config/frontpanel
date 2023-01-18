@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name 94.237.103.209;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/fusionpbx/pbx/fusionpanel;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/fusionpbx/pbx/fusionpanel/fusionpanel.sock;
+    }
+}
